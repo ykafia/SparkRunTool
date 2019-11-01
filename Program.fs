@@ -49,8 +49,6 @@ let CreateConfig dir =
         let files = Directory.GetFiles(Path.Join(dir,"/bin/debug/netcoreapp3.0/"),"*.jar")
         if files.[0].Contains(v+".x")  then files.[0] else files.[1]
     
-    printfn "%A %A" projName sparkV
-    
     (projName, sparkV)
 
 
@@ -71,7 +69,7 @@ let main argv =
     "spark-submit --class org.apache.spark.deploy.dotnet.DotnetRunner --master local [sv] dotnet bin\\Debug\\netcoreapp3.0\\[pj].dll"
         |> InjectInfo versions
         |> ProcessOutput "powershell.exe"
-        |> printfn "%A"
+        |> printfn "%s"
     
     0 // return an integer exit code
 
